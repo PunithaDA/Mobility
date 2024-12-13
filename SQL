@@ -1,7 +1,7 @@
 ** Bussiness request 1. 
 
 city level fare and trip summary report
-
+--- 
 select dc.city_name as City_Name,
 count(ft.trip_id) as Total_trips, 
 round(sum(ft.fare_amount)/nullif(sum(ft.distance_travelled_km),0),2) as Avg_Fare_Per_KM,
@@ -15,7 +15,7 @@ order by Total_trips desc;
 
 ** Business Request -2:
 Monthly city level Trips target performance report
-
+---
 SELECT 
     dc.city_name,
     dd.month_name, 
@@ -48,7 +48,7 @@ LIMIT 0, 1000;
 ** Business Request .3 
 City Level Repeat Passenger trip Frequency report
 
-
+---
 select dc.city_name as City_Name,
 ROUND(SUM(CASE WHEN rtd.trip_count = 2 THEN rtd.repeat_passenger_count END) * 100.0 / NULLIF(SUM(rtd.repeat_passenger_count), 0), 2) AS `2-Trips`,
 ROUND(SUM(CASE WHEN rtd.trip_count = 3 THEN rtd.repeat_passenger_count END) * 100.0 / NULLIF(SUM(rtd.repeat_passenger_count), 0), 2) AS `3-Trips`,
