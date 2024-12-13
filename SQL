@@ -1,7 +1,7 @@
-** Bussiness request 1. 
+-- ** Bussiness request 1. 
 
-city level fare and trip summary report
---- 
+-- city level fare and trip summary report
+
 select dc.city_name as City_Name,
 count(ft.trip_id) as Total_trips, 
 round(sum(ft.fare_amount)/nullif(sum(ft.distance_travelled_km),0),2) as Avg_Fare_Per_KM,
@@ -13,9 +13,9 @@ on dc.city_id = ft.city_id
 group by dc.city_name
 order by Total_trips desc;
 
-** Business Request -2:
-Monthly city level Trips target performance report
----
+-- ** Business Request -2:
+-- Monthly city level Trips target performance report
+
 SELECT 
     dc.city_name,
     dd.month_name, 
@@ -45,10 +45,10 @@ GROUP BY
 LIMIT 0, 1000;
 
 
-** Business Request .3 
-City Level Repeat Passenger trip Frequency report
+-- ** Business Request .3 
+-- City Level Repeat Passenger trip Frequency report
 
----
+
 select dc.city_name as City_Name,
 ROUND(SUM(CASE WHEN rtd.trip_count = 2 THEN rtd.repeat_passenger_count END) * 100.0 / NULLIF(SUM(rtd.repeat_passenger_count), 0), 2) AS `2-Trips`,
 ROUND(SUM(CASE WHEN rtd.trip_count = 3 THEN rtd.repeat_passenger_count END) * 100.0 / NULLIF(SUM(rtd.repeat_passenger_count), 0), 2) AS `3-Trips`,
@@ -66,9 +66,9 @@ on dc.city_id = rtd.city_id
 group by dc.city_name
 order by dc.city_name;
 
-** Business Request 4:
+-- ** Business Request 4:
 
-Identify cities with highest and lowest total new passengers.
+-- Identify cities with highest and lowest total new passengers.
 
 With CityPassengerTotal as
 
@@ -101,9 +101,9 @@ where Rank_Desc <= 3 or Rank_Asc <=3
 order by City_Category,TotalPassenger desc;
 
 
-** Business Request 5
+-- ** Business Request 5
 
-Identify Month with Highest Revenue for each city
+-- Identify Month with Highest Revenue for each city
 
 with CityRev as
 
@@ -142,9 +142,9 @@ WHERE
 ORDER BY 
     City_Name;
 
-** Business Request 6:
+-- ** Business Request 6:
 
-Repeat Passenger Rate Analysis
+-- Repeat Passenger Rate Analysis
 SELECT 
     dc.city_name,
     dd.month_name,
